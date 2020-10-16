@@ -21,7 +21,7 @@ const Home  = () => {
                     className="site-layout-background"
                     style={{ padding: 24, minHeight: 380 }}
                 >
-                    Content
+                    Ini Halaman Home
                 </div>
 
             </Content>
