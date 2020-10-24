@@ -52,20 +52,32 @@ const Profile  = () => {
 
     const createData = useCallback( async (value) => {
 
-        setLoading(true);
+        try {
 
-        await firebase.firestore().collection("user").add(value);
+            setLoading(true);
 
-        setLoading(false);
+            await firebase.firestore().collection("user").add(value);
 
-        notification["success"]({
-            message : "Berhasil",
-            description : "Berhasil menambahkan data"
-        });
+            notification["success"]({
+                message : "Berhasil",
+                description : "Berhasil menambahkan data"
+            });
 
-        form.resetFields();
+            form.resetFields();
 
-        await getData();
+            await getData();
+
+        } catch (e) {
+
+            notification["error"]({
+                message : "Gagal menambahkan data",
+                description : e.message
+            });
+
+        } finally {
+
+            setLoading(false);
+        }
 
     }, [form, getData]);
 
